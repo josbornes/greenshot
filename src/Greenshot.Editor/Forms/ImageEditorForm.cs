@@ -201,19 +201,6 @@ namespace Greenshot.Editor.Forms
             // Workaround: for the MouseWheel event which doesn't get to the panel
             MouseWheel += PanelMouseWheel;
 
-            // Use best fit, for those capture modes where we can get huge images
-            bool useBestFit = _surface.CaptureDetails.CaptureMode switch
-            {
-                CaptureMode.File => true,
-                CaptureMode.Clipboard => true,
-                _ => false
-            };
-
-            if (useBestFit)
-            {
-                ZoomBestFitMenuItemClick(this, EventArgs.Empty);
-            }
-
             // Workaround: As the cursor is (mostly) selected on the surface a funny artifact is visible, this fixes it.
             HideToolstripItems();
         }
