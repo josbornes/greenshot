@@ -164,6 +164,8 @@ namespace Greenshot.Editor.Forms
 			this.lineThicknessUpDown = new ToolStripNumericUpDown();
 			this.counterLabel = new GreenshotToolStripLabel();
 			this.counterUpDown = new ToolStripNumericUpDown();
+			this.paddingLabel = new GreenshotToolStripLabel();
+			this.paddingUpDown = new ToolStripNumericUpDown();
 			this.fontFamilyComboBox = new FontFamilyComboBox();
 			this.fontSizeLabel = new GreenshotToolStripLabel();
 			this.fontSizeUpDown = new ToolStripNumericUpDown();
@@ -1106,7 +1108,9 @@ namespace Greenshot.Editor.Forms
 									this.btnCancel,
 									this.cropModeButton,
 									this.counterLabel,
-									this.counterUpDown});
+									this.counterUpDown,
+									this.paddingLabel,
+									this.paddingUpDown});
 			// 
 			// obfuscateModeButton
 			// 
@@ -1263,6 +1267,24 @@ namespace Greenshot.Editor.Forms
 			this.counterUpDown.Value = 1;
 			this.counterUpDown.GotFocus += new System.EventHandler(this.ToolBarFocusableElementGotFocus);
 			this.counterUpDown.LostFocus += new System.EventHandler(this.ToolBarFocusableElementLostFocus);
+			// 
+			// paddingLabel
+			// 
+			this.paddingLabel.LanguageKey = "editor_counter_padding";
+			this.paddingLabel.Name = "paddingLabel";
+			this.paddingLabel.Text = "Digits";
+			// 
+			// paddingUpDown
+			// 
+			this.paddingUpDown.DecimalPlaces = 0;
+			this.paddingUpDown.Increment = 1;
+			this.paddingUpDown.Maximum = 6;
+			this.paddingUpDown.Minimum = 1;
+			this.paddingUpDown.Name = "paddingUpDown";
+			this.paddingUpDown.Text = "1";
+			this.paddingUpDown.Value = 1;
+			this.paddingUpDown.GotFocus += new System.EventHandler(this.ToolBarFocusableElementGotFocus);
+			this.paddingUpDown.LostFocus += new System.EventHandler(this.ToolBarFocusableElementLostFocus);
 			// 
 			// lineThicknessLabel
 			// 
@@ -1994,6 +2016,8 @@ namespace Greenshot.Editor.Forms
 		private ToolStripNumericUpDown lineThicknessUpDown;
 		private GreenshotToolStripLabel counterLabel;
 		private ToolStripNumericUpDown counterUpDown;
+		private GreenshotToolStripLabel paddingLabel;
+		private ToolStripNumericUpDown paddingUpDown;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;

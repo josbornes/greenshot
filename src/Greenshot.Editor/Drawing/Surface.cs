@@ -280,6 +280,38 @@ namespace Greenshot.Editor.Drawing
             }
         }
 
+        // Minimum number of digits used when rendering counter labels (1 = no zero padding, e.g. "1"; 2 = "01")
+        private int _counterPadding = 1;
+
+        /// <summary>
+        ///     The minimum number of digits used when drawing the counter objects.
+        ///     A value of 1 means no zero-padding; 2 renders "1" as "01", etc.
+        /// </summary>
+        public int CounterPadding
+        {
+            get => _counterPadding;
+            set
+            {
+                var newValue = value < 1 ? 1 : value;
+                if (_counterPadding == newValue)
+                {
+                    return;
+                }
+
+                _counterPadding = newValue;
+                Invalidate();
+                _propertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CounterPadding)));
+            }
+        }
+
+        /// <summary>
+        ///     Format a counter number applying the configured zero-padding.
+        /// </summary>
+        public string FormatStepNumber(int number)
+        {
+            return number.ToString().PadLeft(_counterPadding, '0');
+        }
+
         /// <summary>
         /// Count all the VISIBLE steplabels in the surface, up to the supplied one
         /// </summary>

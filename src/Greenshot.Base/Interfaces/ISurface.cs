@@ -52,6 +52,11 @@ namespace Greenshot.Base.Interfaces
         int CounterStart { get; set; }
 
         /// <summary>
+        /// Minimum number of digits used when rendering counter labels (1 = no zero padding)
+        /// </summary>
+        int CounterPadding { get; set; }
+
+        /// <summary>
         /// Unique ID of the Surface
         /// </summary>
         Guid ID { get; set; }

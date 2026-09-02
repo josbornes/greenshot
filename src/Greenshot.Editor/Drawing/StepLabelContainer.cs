@@ -62,6 +62,9 @@ namespace Greenshot.Editor.Drawing
         // Used to store the counter start of the Surface, as the surface is NOT stored.
         private int _counterStart = 1;
 
+        // Used to store the counter padding of the Surface, as the surface is NOT stored.
+        private int _counterPadding = 1;
+
         public int Number
         {
             get { return _number; }
@@ -79,6 +82,7 @@ namespace Greenshot.Editor.Drawing
 
             Number = InternalParent.CountStepLabels(this);
             _counterStart = InternalParent.CounterStart;
+            _counterPadding = InternalParent.CounterPadding;
         }
 
         /// <summary>
@@ -129,6 +133,7 @@ namespace Greenshot.Editor.Drawing
 
             // Make sure the counter start is restored (this unfortunately happens multiple times... -> hack)
             newParentSurface.CounterStart = _counterStart;
+            newParentSurface.CounterPadding = _counterPadding;
             newParentSurface.AddStepLabel(this);
         }
 
@@ -211,7 +216,7 @@ namespace Greenshot.Editor.Drawing
             graphics.CompositingQuality = CompositingQuality.HighQuality;
             graphics.PixelOffsetMode = PixelOffsetMode.None;
             graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-            string text = ((Surface) Parent).CountStepLabels(this).ToString();
+            string text = ((Surface) Parent).FormatStepNumber(((Surface) Parent).CountStepLabels(this));
             var rect = new NativeRect(Left, Top, Width, Height).Normalize();
             Color fillColor = GetFieldValueAsColor(FieldType.FILL_COLOR);
             Color lineColor = GetFieldValueAsColor(FieldType.LINE_COLOR);

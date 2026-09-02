@@ -327,6 +327,7 @@ namespace Greenshot.Editor.Forms
             if (Surface != null)
             {
                 counterUpDown.Value = Surface.CounterStart;
+                paddingUpDown.Value = Surface.CounterPadding;
             }
 
             ApplyLanguage();
@@ -1367,6 +1368,7 @@ namespace Greenshot.Editor.Forms
             new BidirectionalBinding(cropModeButton, "SelectedTag", _surface.FieldAggregator.GetField(FieldType.CROPMODE), "Value");
             new BidirectionalBinding(highlightModeButton, "SelectedTag", _surface.FieldAggregator.GetField(FieldType.PREPARED_FILTER_HIGHLIGHT), "Value");
             new BidirectionalBinding(counterUpDown, "Value", _surface, "CounterStart", DecimalIntConverter.GetInstance(), NotNullValidator.GetInstance());
+            new BidirectionalBinding(paddingUpDown, "Value", _surface, "CounterPadding", DecimalIntConverter.GetInstance(), NotNullValidator.GetInstance());
         }
 
         /// <summary>
@@ -1395,6 +1397,7 @@ namespace Greenshot.Editor.Forms
                 textVerticalAlignmentButton.Visible = props.HasFieldValue(FieldType.TEXT_VERTICAL_ALIGNMENT);
                 shadowButton.Visible = props.HasFieldValue(FieldType.SHADOW);
                 counterLabel.Visible = counterUpDown.Visible = props.HasFieldValue(FieldType.FLAGS) && ((FieldFlag)props.GetFieldValue(FieldType.FLAGS)).HasFlag(FieldFlag.COUNTER);
+                paddingLabel.Visible = paddingUpDown.Visible = props.HasFieldValue(FieldType.FLAGS) && ((FieldFlag)props.GetFieldValue(FieldType.FLAGS)).HasFlag(FieldFlag.COUNTER);
 
                 btnConfirm.Visible = btnCancel.Visible = props.HasFieldValue(FieldType.FLAGS) && ((FieldFlag)props.GetFieldValue(FieldType.FLAGS)).HasFlag(FieldFlag.CONFIRMABLE);
                 btnConfirm.Enabled = _surface.HasSelectedElements;
